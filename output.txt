@@ -1,17 +1,17 @@
-URL: https://open.spotify.com/artist/5r1tUTxVSgvBHnoDuDODPH
-ID: 5r1tUTxVSgvBHnoDuDODPH
+URL: https://open.spotify.com/artist/3HqSLMAZ3g3d5poNaI7GOU
+ID: 3HqSLMAZ3g3d5poNaI7GOU
 
 TOP TRACKS:
-0: FIESTA   id: 6Ihdn6wW2UBhfTKWbP29KA
-1: Panorama   id: 0CnpSTdL9l5vQM4YnzXtyo
-2: La Vie en Rose   id: 3WfaJhCL4p2JbdffJjV6Va
-3: Secret Story of the Swan   id: 7G6WuVZuTbF6JcnA9wOvsD
-4: Violeta   id: 0Qzs7eyyx6Il1qkA4wqUHm
-5: D-D-DANCE   id: 3U764c5XbUqjr408oTrjfy
-6: Sequence   id: 4Wa3kUtGTeuPuC9qF9wF0g
-7: AYAYAYA   id: 4XKCLNyCTvtdkLu5O1mzTU
-8: Highlight   id: 2C4MS6rTqxbWw6h9z9jszV
-9: Up   id: 70QXJyGkuTJDhfxqW2XGED
+0: LILAC   id: 5xrtzzzikpG3BLbo4q1Yul
+1: eight(Prod.&Feat. SUGA of BTS)   id: 0pYacDCZuRhcrwGUA5nTBe
+2: BBIBBI   id: 4as4XEOR03oGm1STUKl6pa
+3: strawberry moon   id: 2g0LdZQce9xlcHb1mBJyuz
+4: Celebrity   id: 5nCwjUUsmBuNZKn9Xu10Os
+5: Blueming   id: 4Dr2hJ3EnVh2Aaot6fRwDO
+6: Winter Sleep   id: 2y4hHM6c48Qzk0bqh33XfB
+7: Palette (feat. G-DRAGON)   id: 3y7ByLZ05tluscOTRgEJ9Y
+8: Through the Night   id: 3P3UA61WRQqwCXaoFOTENd
+9: NAKKA (with IU)   id: 4t2FIqZJORKZGSKg30SShr
 
 My Playlists:
 name: GO ANTHONY!   id: 6ww7Bdls8NuMmdoivCBYX5

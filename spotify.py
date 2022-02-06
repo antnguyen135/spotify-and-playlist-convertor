@@ -8,13 +8,20 @@ from spotipy.oauth2 import SpotifyOAuth
 import sys
 import spotipy
 import spotipy.util as util
-ACCESS_TOKEN =''
-SPOTIPY_CLIENT_ID = 'e13faa7573d7435998090c6718e11728'
-SPOTIPY_CLIENT_SECRET  = '717c2dc20cc64b71a048a7b97a8c9a4e'
+from dotenv import load_dotenv
+import os
+load_dotenv()
 
+ACCESS_TOKEN =''
+SPOTIPY_CLIENT_ID = os.getenv("SPOTIPY_CLIENT_ID")
+SPOTIPY_CLIENT_SECRET  = os.getenv("SPOTIPY_CLIENT_SECRET")
+autho_ascii = str(SPOTIPY_CLIENT_ID) +":" + str(SPOTIPY_CLIENT_SECRET)
+autho_bytes = autho_ascii.encode('ascii')
+base64_bytes = base64.b64encode(autho_bytes)
+base64_message = base64_bytes.decode('ascii')
 scope  = 'user-library-read user-read-private playlist-modify-private playlist-read-private'
-code = 'AQC5HW4zeJLM2RUr23ohtofLmOOhu2exCKB929mruVx2nTt5SKmQHoZU12vm0AYRTG7_3Xa0tmw1y6c1nBoBeuycbLxBV5Bddl_bIixoAzIR242IN7oauKq04LSejykOo_vgKQBsIwIKE6Ya2B2Bz5UQ5-8ACY6yIZr5739zAuC_p7O152X-_QjcxktvdwqhdPyAbrP0qHAoTcunBD3aykLvYXcDz1bQYqBuH_WG6lZuIbUR7xx1GvRlaVIbhJBX1rMKU9X02jSWGcvWAU38BEY5RLvKfjPGT0UezbqivxSCcVHPmJbh'
-refresh_token = 'AQCuCRXMlaK6p8YDoXMImA6wzorTbune619zysFPYvCsC2dCoY-OLkQM--iSRfzxsu4GvH8eM0bZ5AUS9wcZ1DHdRuvmtTanyopHTNIQ6R8X2J_sF_NysiimtzHoSEPjUPQ'
+code = os.getenv("code")
+refresh_token = os.getenv("refresh_token")
 AUTH_URL = 'https://accounts.spotify.com/authorize'
 TOKEN_URL = 'https://accounts.spotify.com/api/token'
 BASE_URL = 'https://api.spotify.com/v1/'
@@ -35,7 +42,7 @@ def create_playlist(name,public):
 def getToken(username):
     global ACCESS_TOKEN
     scope  = 'user-library-read user-read-private playlist-modify-private playlist-read-private'
-    token = util.prompt_for_user_token(username,scope,client_id='e13faa7573d7435998090c6718e11728',client_secret='717c2dc20cc64b71a048a7b97a8c9a4e',redirect_uri='https://open.spotify.com/collection/playlists')
+    token = util.prompt_for_user_token(username,scope,client_id={SPOTIPY_CLIENT_ID},client_secret={SPOTIPY_CLIENT_SECRET},redirect_uri='https://open.spotify.com/collection/playlists')
     if token:
         ACCESS_TOKEN = token
     else:
@@ -43,18 +50,13 @@ def getToken(username):
 
 def getRefreshToken():
     SPOTIFY_URL = TOKEN_URL
-    autho_ascii = SPOTIPY_CLIENT_ID +":" + SPOTIPY_CLIENT_SECRET
-    autho_bytes = autho_ascii.encode('ascii')
-    base64_bytes = base64.b64encode(autho_bytes)
-    base64_message = base64_bytes.decode('ascii')
-    print(base64_message)
     headers = {
         'Content-Type': 'application/x-www-form-urlencoded',
-        "Authorization": 'Basic ZTEzZmFhNzU3M2Q3NDM1OTk4MDkwYzY3MThlMTE3Mjg6NzE3YzJkYzIwY2M2NGI3MWEwNDhhN2I5N2E4YzlhNGU='
+        "Authorization": f'Basic {base64_message}'
     }
     data={
         "grant_type": 'authorization_code',
-        "code": 'AQDLaD1L_IHhQkmgRy6I-eEEO1y1w8D6u5CVCsYndQKfaOBcHfO9CETTURZTkZxQGxo9jo5IZ5qDQVSe2sCqM5ZL4C-SqoYvABISGtSk08FXdOOQq5cJ5DqIJmo_OkpVHZEnX1iwz4Xj6Mrud8qOd2cjQW0u97SlNk0QWX6exE3kIvj0ZxSIiyszDF0wfaP-wbNA55VjLTXZ-xgZIbS-fJeywukEuHqaQFYpvEyU72ezXubDRRgp-7zdOzZXyXY7wZzaJejuN61As08ILkYm62aBld7t5aATusIh3AO7TvTo-sT-LBJR',
+        "code": f'{code}',
         "redirect_uri": 'https://open.spotify.com/collection/playlists',
         }
     
@@ -65,7 +67,7 @@ def getNewAccessToken():
     SPOTIFY_URL = TOKEN_URL
     headers = {
         'Content-Type': 'application/x-www-form-urlencoded',
-        "Authorization": 'Basic ZTEzZmFhNzU3M2Q3NDM1OTk4MDkwYzY3MThlMTE3Mjg6NzE3YzJkYzIwY2M2NGI3MWEwNDhhN2I5N2E4YzlhNGU='
+        "Authorization": f'Basic {base64_message}'
     }
     data={
         "grant_type": 'refresh_token',
